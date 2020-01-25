@@ -1,0 +1,221 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  
+  <title>链表分割 | 笔记归宿</title>
+  <meta name="author" content="Yang" />
+
+  
+  <meta name="description" content="好想好想好想好想好想好想和你在一起工作！" />
+  
+
+  
+  <meta name="keywords" content="个人博客" />
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <meta property="og:title" content="链表分割" />
+  <meta property="og:site_name" content="笔记归宿" />
+
+  
+  
+
+  
+    <meta property="og:image" content="" />
+  
+
+  
+  <link href="/css/images/favicon.ico" rel="icon" />
+  
+
+  <link rel="alternate" href="/atom.xml" title="笔记归宿" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">笔记归宿</a></h1>
+  <h2><a href="/">愿你熬得过万丈孤独，藏得下星辰大海　</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2020-01-25T13:17:04.000Z"><a href="/牛客网练习/链表分割/">2020-01-25</a></time>
+      
+      
+  
+    <h1 class="title">链表分割</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>链接：<br><a href="https://www.nowcoder.com/questionTerminal/0e27e0b064de4eacac178676ef9c9d70?mutiTagIds=639&orderByHotValue=1&questionTypes=000100&commentTags=Python" target="_blank" rel="noopener">原题出处</a><br>来源：牛客网</p>
+<p>[编程题] 链表分割<br>热度指数：43019时间限制：3秒空间限制：32768K<br>算法知识视频讲解</p>
+<p>编写代码，以给定值x为基准将链表分割成两部分，所有小于x的结点排在大于或等于x的结点之前</p>
+<p>给定一个链表的头指针 ListNode* pHead，请返回重新排列后的链表的头指针。注意：分割以后保持原来的数据顺序不变。</p>
+<h2 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h2><p>一看到这道题我就想到了创建两个链表的想法，一个链表放小于指定x的所有节点，另一个放大于等于的，最后将两个链表合二为一不就是要求的结果吗</p>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p>（1）记住两个链表的头节点，在拼接时需要用到<br>（2）考虑空异常</p>
+<p><strong><em>未实现的思路：</em></strong><br>既然可以这样弄两个链表，那么为什么不这样（创建一个链表就可以）呢？</p>
+<p>将小于x的节点头插到该链表，大于等于的尾插到该链表，最后形成的链表不就是答案吗。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>我实现的是两个链表的（可以优化的地方：将尾插算法抽取出来为一个方法）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">partition</span><span class="params">(ListNode pHead, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">     <span class="comment">// write code here</span></span><br><span class="line">     ListNode left = <span class="keyword">null</span>;</span><br><span class="line">     ListNode right = <span class="keyword">null</span>;</span><br><span class="line">     ListNode p1 = <span class="keyword">null</span>;</span><br><span class="line">     ListNode p2 = <span class="keyword">null</span>;</span><br><span class="line">     <span class="keyword">while</span>(pHead!=<span class="keyword">null</span>)&#123;</span><br><span class="line">         <span class="keyword">if</span>(pHead.val&lt;x)&#123;</span><br><span class="line">             <span class="keyword">if</span>(left == <span class="keyword">null</span>)&#123;</span><br><span class="line">                 left = <span class="keyword">new</span> ListNode(pHead.val);</span><br><span class="line">                 p1 = left; <span class="comment">//左链表的头节点</span></span><br><span class="line">             &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                 left.next = <span class="keyword">new</span> ListNode(pHead.val);</span><br><span class="line">                 left = left.next;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">             <span class="keyword">if</span>(right == <span class="keyword">null</span>)&#123;</span><br><span class="line">                 right = <span class="keyword">new</span> ListNode(pHead.val);</span><br><span class="line">                 p2 = right;    <span class="comment">//右链表的头节点</span></span><br><span class="line">             &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                 right.next = <span class="keyword">new</span> ListNode(pHead.val);</span><br><span class="line">                 right = right.next;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">         pHead = pHead.next;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">if</span>(p1==<span class="keyword">null</span>)&#123;</span><br><span class="line">         <span class="keyword">return</span> p2;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">if</span>(p2==<span class="keyword">null</span>)&#123;</span><br><span class="line">         <span class="keyword">return</span> p1;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">//走到这里说明都不为空，需要连接</span></span><br><span class="line">     <span class="comment">//找到左链表的最后一个节点将其与右链表连接</span></span><br><span class="line">     ListNode cur = p1;</span><br><span class="line">     <span class="keyword">while</span>(cur.next!=<span class="keyword">null</span>)&#123;</span><br><span class="line">         cur = cur.next;</span><br><span class="line">     &#125;</span><br><span class="line">     cur.next = p2;</span><br><span class="line">     <span class="keyword">return</span> p1;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>如果有错误还望指出！</p>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+  
+  <div class="categories">
+    <a href="/categories/牛客网练习/">牛客网练习</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/算法/">算法</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yy.note">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/测试/">测试</a><small>1</small></li>
+  
+    <li><a href="/categories/牛客网练习/">牛客网练习</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/牛客网练习/二叉树的镜像/">二叉树的镜像</a>
+      </li>
+    
+      <li>
+        <a href="/牛客网练习/二叉树平衡检查/">二叉树平衡检查</a>
+      </li>
+    
+      <li>
+        <a href="/牛客网练习/链表分割/">链表分割</a>
+      </li>
+    
+      <li>
+        <a href="/牛客网练习/统计同成绩人数/">统计同成绩人数</a>
+      </li>
+    
+      <li>
+        <a href="/牛客网练习/尼科彻斯定理/">尼科彻斯定理</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/心情/">心情</a><small>1</small></li>
+  
+    <li><a href="/tags/算法/">算法</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/%E5%BF%83%E6%83%85/" style="font-size: 10px;">心情</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a>
+  </div>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  <p>
+  
+  &copy; 2020 Yang
+  
+  All rights reserved.</p>
+  <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</div>
+<div class="clearfix"></div>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id='bg'></div>
+</body>
+</html>

@@ -7,6 +7,8 @@
   <meta name="author" content="Yang" />
 
   
+  <meta name="description" content="好想好想好想好想好想好想和你在一起工作！" />
+  
 
   
   <meta name="keywords" content="个人博客" />
@@ -43,7 +45,7 @@
 <body>
   <header id="header" class="inner"><div class="alignleft">
   <h1><a href="/">笔记归宿</a></h1>
-  <h2><a href="/">写就完事了，奥利给！</a></h2>
+  <h2><a href="/">愿你熬得过万丈孤独，藏得下星辰大海　</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -64,17 +66,32 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2020-01-25T04:27:25.000Z"><a href="/测试/第一篇文章/">2020-01-25</a></time>
+        <time datetime="2020-01-25T13:22:25.000Z"><a href="/牛客网练习/二叉树的镜像/">2020-01-25</a></time>
       
       
   
-    <h1 class="title"><a href="/测试/第一篇文章/">第一篇文章</a></h1>
+    <h1 class="title"><a href="/牛客网练习/二叉树的镜像/">二叉树的镜像</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>今天满怀激动尝试自己搞一个小博客！！！大年初一希望可以成功撒！</p>
+        <h2 id="【牛客】求出二叉树的镜像"><a href="#【牛客】求出二叉树的镜像" class="headerlink" title="【牛客】求出二叉树的镜像"></a>【牛客】求出二叉树的镜像</h2><p>链接：<br><a href="https://www.nowcoder.com/questionTerminal/564f4c26aa584921bc75623e48ca3011" target="_blank" rel="noopener">原题出处</a><br>来源：牛客网</p>
+<p>其实我是看了大佬的博客：<br><a href="https://blog.csdn.net/xiaoxingxing1744/article/details/82782461" target="_blank" rel="noopener">大佬解说</a></p>
+<p>操作给定的二叉树，将其变换为源二叉树的镜像。</p>
+<p><img src="https://img-blog.csdnimg.cn/20191125162229432.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNDE5NDYy,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>有两种实现方式：<br>递归：</p>
+<p>想象一下，加入只有三个结点，根结点，左孩子，右孩子<br>那么就交换左右孩子。</p>
+<p>出口条件：</p>
+<blockquote>
+<p>节点为空或者左右孩子都为空</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//递归</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Mirror</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//这里和非递归的条件很类似，都是说了一件事，只要有一个不为空，我就要交换（空和非空也有左右对称嘛）</span></span><br><span class="line">    <span class="keyword">if</span>(root.left==<span class="keyword">null</span>&amp;&amp;root.right==<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//交换</span></span><br><span class="line">    TreeNode temp = root.left;</span><br><span class="line">    root.left = root.right;</span><br><span class="line">    root.right = temp;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//递归左子树</span></span><br><span class="line">    <span class="keyword">if</span>(root.left!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        Mirror(root.left);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//递归右子树</span></span><br><span class="line">    <span class="keyword">if</span>(root.right!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        Mirror(root.right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>非递归：<br>递归其实就是栈的入栈出栈，我们可以利用栈的特性对结点进行操作。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//非递归</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Mirror</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    stack.push(root);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(!stack.isEmpty())&#123;</span><br><span class="line">        TreeNode node = stack.pop();</span><br><span class="line">        <span class="comment">//这个条件映衬了上面所说的话</span></span><br><span class="line">        <span class="keyword">if</span>(node.left!=<span class="keyword">null</span>||node.right!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            TreeNode temp = node.left;</span><br><span class="line">            node.left = node.right;</span><br><span class="line">            node.right = temp;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//其实递归就是栈的入栈出栈，所以代码很相似</span></span><br><span class="line">        <span class="keyword">if</span>(node.left!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            stack.push(node.left);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(node.right!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            stack.push(node.right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -87,13 +104,196 @@
         
   
   <div class="categories">
-    <a href="/categories/测试/">测试</a>
+    <a href="/categories/牛客网练习/">牛客网练习</a>
   </div>
 
         
   
   <div class="tags">
-    <a href="/tags/心情/">心情</a>
+    <a href="/tags/算法/">算法</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2020-01-25T13:17:16.000Z"><a href="/牛客网练习/二叉树平衡检查/">2020-01-25</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/牛客网练习/二叉树平衡检查/">二叉树平衡检查</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>参考：<a href="https://blog.csdn.net/canmengmeng/article/details/83506289" target="_blank" rel="noopener">学习自该大佬</a></p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>实现一个函数，检查二叉树是否平衡，平衡的定义如下，对于树中的任意一个结点，其两颗子树的高度差不超过1。</p>
+<p>给定指向树根结点的指针TreeNode* root，请返回一个bool，代表这棵树是否平衡。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>1.求出左子树与右子树的高度差，大于1则false<br>2.如何求？<br>递归求出，如果节点为空那么则深度为0，这同时也是递归出口，若不为空则递归左子树与右子树。<br>注意：最终二叉树的高度是左右子树取高度高的加1</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">public class TreeNode &#123;</span></span><br><span class="line"><span class="comment">    int val = 0;</span></span><br><span class="line"><span class="comment">    TreeNode left = null;</span></span><br><span class="line"><span class="comment">    TreeNode right = null;</span></span><br><span class="line"><span class="comment">    public TreeNode(int val) &#123;</span></span><br><span class="line"><span class="comment">        this.val = val;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Balance</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBalance</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> left = getTreeHeight(root.left);</span><br><span class="line">        <span class="keyword">int</span> right = getTreeHeight(root.right);</span><br><span class="line">        <span class="keyword">return</span> Math.abs(left - right) &lt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getTreeHeight</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//这里为什么加1?，因为root为null时返回的是0，我们假设只有三个节点的完全二叉树</span></span><br><span class="line">        <span class="comment">//那是不是最后的结果就是根节点的左孩子0+0+1，根节点的右孩子0+0+1,最后1和1取大的再加1，不就是2嘛</span></span><br><span class="line">        <span class="keyword">return</span> Math.max(getTreeHeight(root.left),getTreeHeight(root.right))+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+  
+  <div class="categories">
+    <a href="/categories/牛客网练习/">牛客网练习</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/算法/">算法</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2020-01-25T13:17:04.000Z"><a href="/牛客网练习/链表分割/">2020-01-25</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/牛客网练习/链表分割/">链表分割</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>链接：<br><a href="https://www.nowcoder.com/questionTerminal/0e27e0b064de4eacac178676ef9c9d70?mutiTagIds=639&orderByHotValue=1&questionTypes=000100&commentTags=Python" target="_blank" rel="noopener">原题出处</a><br>来源：牛客网</p>
+<p>[编程题] 链表分割<br>热度指数：43019时间限制：3秒空间限制：32768K<br>算法知识视频讲解</p>
+<p>编写代码，以给定值x为基准将链表分割成两部分，所有小于x的结点排在大于或等于x的结点之前</p>
+<p>给定一个链表的头指针 ListNode* pHead，请返回重新排列后的链表的头指针。注意：分割以后保持原来的数据顺序不变。</p>
+<h2 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h2><p>一看到这道题我就想到了创建两个链表的想法，一个链表放小于指定x的所有节点，另一个放大于等于的，最后将两个链表合二为一不就是要求的结果吗</p>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p>（1）记住两个链表的头节点，在拼接时需要用到<br>（2）考虑空异常</p>
+<p><strong><em>未实现的思路：</em></strong><br>既然可以这样弄两个链表，那么为什么不这样（创建一个链表就可以）呢？</p>
+<p>将小于x的节点头插到该链表，大于等于的尾插到该链表，最后形成的链表不就是答案吗。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>我实现的是两个链表的（可以优化的地方：将尾插算法抽取出来为一个方法）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">partition</span><span class="params">(ListNode pHead, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">     <span class="comment">// write code here</span></span><br><span class="line">     ListNode left = <span class="keyword">null</span>;</span><br><span class="line">     ListNode right = <span class="keyword">null</span>;</span><br><span class="line">     ListNode p1 = <span class="keyword">null</span>;</span><br><span class="line">     ListNode p2 = <span class="keyword">null</span>;</span><br><span class="line">     <span class="keyword">while</span>(pHead!=<span class="keyword">null</span>)&#123;</span><br><span class="line">         <span class="keyword">if</span>(pHead.val&lt;x)&#123;</span><br><span class="line">             <span class="keyword">if</span>(left == <span class="keyword">null</span>)&#123;</span><br><span class="line">                 left = <span class="keyword">new</span> ListNode(pHead.val);</span><br><span class="line">                 p1 = left; <span class="comment">//左链表的头节点</span></span><br><span class="line">             &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                 left.next = <span class="keyword">new</span> ListNode(pHead.val);</span><br><span class="line">                 left = left.next;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">             <span class="keyword">if</span>(right == <span class="keyword">null</span>)&#123;</span><br><span class="line">                 right = <span class="keyword">new</span> ListNode(pHead.val);</span><br><span class="line">                 p2 = right;    <span class="comment">//右链表的头节点</span></span><br><span class="line">             &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                 right.next = <span class="keyword">new</span> ListNode(pHead.val);</span><br><span class="line">                 right = right.next;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">         pHead = pHead.next;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">if</span>(p1==<span class="keyword">null</span>)&#123;</span><br><span class="line">         <span class="keyword">return</span> p2;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">if</span>(p2==<span class="keyword">null</span>)&#123;</span><br><span class="line">         <span class="keyword">return</span> p1;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">//走到这里说明都不为空，需要连接</span></span><br><span class="line">     <span class="comment">//找到左链表的最后一个节点将其与右链表连接</span></span><br><span class="line">     ListNode cur = p1;</span><br><span class="line">     <span class="keyword">while</span>(cur.next!=<span class="keyword">null</span>)&#123;</span><br><span class="line">         cur = cur.next;</span><br><span class="line">     &#125;</span><br><span class="line">     cur.next = p2;</span><br><span class="line">     <span class="keyword">return</span> p1;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>如果有错误还望指出！</p>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+  
+  <div class="categories">
+    <a href="/categories/牛客网练习/">牛客网练习</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/算法/">算法</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2020-01-25T13:15:21.000Z"><a href="/牛客网练习/统计同成绩人数/">2020-01-25</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/牛客网练习/统计同成绩人数/">统计同成绩人数</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>链接：<br><a href="https://www.nowcoder.com/questionTerminal/987123efea5f43709f31ad79a318ca69" target="_blank" rel="noopener">原题出处</a><br>来源：牛客网</p>
+<p>读入N名学生的成绩，将获得某一给定分数的学生人数输出。</p>
+<p>输入描述:<br>测试输入包含若干测试用例，每个测试用例的格式为</p>
+<blockquote>
+<p>第1行：N<br>第2行：N名学生的成绩，相邻两数字用一个空格间隔。<br>第3行：给定分数</p>
+</blockquote>
+<p>当读到N=0时输入结束。其中N不超过1000，成绩分数为（包含）0到100之间的一个整数。</p>
+<p>输出描述:<br>对每个测试用例，将获得给定分数的学生人数输出。<br>示例1<br>输入</p>
+<blockquote>
+<p>3<br>80 60 90<br>60<br>2<br>85 66<br>0<br>5<br>60 75 90 55 75<br>75<br>0</p>
+</blockquote>
+<p>输出</p>
+<blockquote>
+<p>1<br>0<br>2</p>
+</blockquote>
+<p>一开始，我写了一个封装类来封装信息，并将该类添加到集合中。这样才可以保证输出0结束后记住输入的所有数据。<br>在idea上复制输入示例代码测试，输出的数据与输出示例一样但是通不过测试，后来查了一下网络上的，他们是按一组一组数据处理的不是将所有数据输入后在统一处理，但是这样将输入示例在idea上测试与输出示例不符但又可以通过。百思不得其解，无情！<br>这里先附上可以通过的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> N=in.nextInt();</span><br><span class="line">        <span class="keyword">if</span>(N==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        in.nextLine();  <span class="comment">//吃个空格,nextLine()和next()以及nextInt()一起用一定要格外注意空格回车</span></span><br><span class="line">        String scores = in.nextLine();</span><br><span class="line">        <span class="keyword">int</span> score = in.nextInt();</span><br><span class="line"></span><br><span class="line">        String[] s=scores.split(<span class="string">" "</span>);</span><br><span class="line">        <span class="keyword">for</span>(String t:s)&#123;</span><br><span class="line">            <span class="keyword">int</span> i = Integer.parseInt(t);</span><br><span class="line">            <span class="keyword">if</span>(i==score)&#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(count);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>下面的是封装的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Day16</span></span>&#123;</span><br><span class="line">    <span class="comment">//方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> N,String scores,<span class="keyword">int</span> theScore)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        String[] s = scores.split(<span class="string">" "</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> score = Integer.parseInt(s[i]);</span><br><span class="line">            <span class="keyword">if</span>(theScore==score)&#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> N;</span><br><span class="line">        String scores;</span><br><span class="line">        <span class="keyword">int</span> theScore;</span><br><span class="line">        <span class="keyword">int</span> count=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">(<span class="keyword">int</span> N,String scores,<span class="keyword">int</span> theScore)</span></span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.N=N;</span><br><span class="line">            <span class="keyword">this</span>.scores = scores;</span><br><span class="line">            <span class="keyword">this</span>.theScore = theScore;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCount</span><span class="params">(<span class="keyword">int</span> count)</span></span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.count = count;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        List&lt;Test&gt; list = <span class="keyword">new</span> ArrayList&lt;Test&gt;();</span><br><span class="line">        <span class="keyword">int</span> N=in.nextInt();</span><br><span class="line">        in.nextLine();  <span class="comment">//吃空格</span></span><br><span class="line">        <span class="keyword">while</span>(N!=<span class="number">0</span>)&#123;</span><br><span class="line">            String scores=in.nextLine();<span class="comment">/*</span></span><br><span class="line"><span class="comment">            System.out.println(scores);*/</span></span><br><span class="line">            <span class="keyword">int</span> theScore = in.nextInt();</span><br><span class="line">            list.add(<span class="keyword">new</span> Test(N,scores,theScore));</span><br><span class="line">            N = in.nextInt();</span><br><span class="line">            in.nextLine();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; list.size();i++)&#123;</span><br><span class="line">            Test test = list.get(i);</span><br><span class="line">            <span class="keyword">int</span> count = fun(test.N,test.scores,test.theScore);</span><br><span class="line">            test.setCount(count);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;list.size();i++)&#123;</span><br><span class="line">            System.out.println(list.get(i).count);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如有错误还望指出哈！</p>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+  
+  <div class="categories">
+    <a href="/categories/牛客网练习/">牛客网练习</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/算法/">算法</a>
   </div>
 
         <!-- partial('post/share') -->
@@ -109,6 +309,10 @@
 
 <nav id="pagination">
   
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">&gt;&gt;</a>
+  </nav>
+
 </nav>
 </div></div>
     <aside id="sidebar" class="alignright">
@@ -126,6 +330,8 @@
   
     <li><a href="/categories/测试/">测试</a><small>1</small></li>
   
+    <li><a href="/categories/牛客网练习/">牛客网练习</a><small>7</small></li>
+  
   </ul>
 </div>
 
@@ -136,7 +342,23 @@
   <ul class="entry">
     
       <li>
-        <a href="/测试/第一篇文章/">第一篇文章</a>
+        <a href="/牛客网练习/二叉树的镜像/">二叉树的镜像</a>
+      </li>
+    
+      <li>
+        <a href="/牛客网练习/二叉树平衡检查/">二叉树平衡检查</a>
+      </li>
+    
+      <li>
+        <a href="/牛客网练习/链表分割/">链表分割</a>
+      </li>
+    
+      <li>
+        <a href="/牛客网练习/统计同成绩人数/">统计同成绩人数</a>
+      </li>
+    
+      <li>
+        <a href="/牛客网练习/尼科彻斯定理/">尼科彻斯定理</a>
       </li>
     
   </ul>
@@ -150,6 +372,8 @@
   
     <li><a href="/tags/心情/">心情</a><small>1</small></li>
   
+    <li><a href="/tags/算法/">算法</a><small>7</small></li>
+  
   </ul>
 </div>
 
@@ -158,7 +382,7 @@
 <div class="widget tagcloud">
   <h3 class="title">Tag Cloud</h3>
   <div class="entry">
-    <a href="/tags/%E5%BF%83%E6%83%85/" style="font-size: 10px;">心情</a>
+    <a href="/tags/%E5%BF%83%E6%83%85/" style="font-size: 10px;">心情</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a>
   </div>
 </div>
 
