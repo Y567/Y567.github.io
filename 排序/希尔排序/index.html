@@ -1,0 +1,232 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  
+  <title>希尔排序 | 笔记归宿</title>
+  <meta name="author" content="Yang" />
+
+  
+  <meta name="description" content="好想好想好想好想好想好想和你在一起工作！" />
+  
+
+  
+  <meta name="keywords" content="个人博客" />
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <meta property="og:title" content="希尔排序" />
+  <meta property="og:site_name" content="笔记归宿" />
+
+  
+  
+
+  
+    <meta property="og:image" content="" />
+  
+
+  
+  <link href="/css/images/favicon.ico" rel="icon" />
+  
+
+  <link rel="alternate" href="/atom.xml" title="笔记归宿" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">笔记归宿</a></h1>
+  <h2><a href="/">愿你熬得过万丈孤独，藏得下星辰大海　</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2020-01-27T16:39:40.000Z"><a href="/排序/希尔排序/">2020-01-28</a></time>
+      
+      
+  
+    <h1 class="title">希尔排序</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
+<li><p>1.1 排序</p>
+</li>
+<li><p>排序，就是使一串记录，按照其中的某个或某些关键字的大小，递增或递减的排列起来的操作。<br>平时的上下文中，如果提到排序，通常指的是排升序（非降序）。<br>通常意义上的排序，都是指的原地排序(in place sort)。*</p>
+</li>
+<li><p>1.2 稳定性</p>
+</li>
+<li><p>两个相等的数据，如果经过排序后，排序算法能保证其相对位置不发生变化，则我们称该算法是具备稳定性的排序<br>算法。*</p>
+<p> <em>9  ,  5  ,  2  ,  7  ,  12  ,  2  ,  4  ,  6  ,  9  ,  23<br> 排序后<br> 前面的 2 依旧在后面的 2 的后面那么称这个算法具有稳定性</em></p>
+</li>
+</ul>
+<h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><p><a href="https://blog.csdn.net/qq_42419462/article/details/101382639" target="_blank" rel="noopener">想要了解希尔排序需要先了解直接插入排序（希尔排序是直接插入排序的优化）</a></p>
+<p>  9  ,  5  ,  2  ,  7  ,  12  ,  2  ,  4  ,  6  ,  9  ,  23</p>
+<p>基本思想是一样。<br>希尔排序你可以将其理解为分组进行插入排序。（跳着排序）<br>先将数组变为一个近似有序的数组。然后逐渐逼近。<br>这里利用一个变量（gap）实现分组。<br>gap代表间隙，一次移动的步数，因为移动的步数是跳着走的所以比起直接插入排序的一步一步走快！！！<br>继续下去数组最后就会有序</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//分组交换的插入排序(gap表示间隙)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertSortWithGap</span><span class="params">(<span class="keyword">int</span>[] array,<span class="keyword">int</span> gap)</span></span>&#123;</span><br><span class="line">    <span class="comment">//这里交换的思想与直接插入排序一样，只是跳着比较，不是一个个比较，排完后，数组近似有序</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; array.length;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> key = array[i];</span><br><span class="line">        <span class="keyword">int</span> j = i - gap;</span><br><span class="line">        <span class="comment">//同样的这里写大于是为了保证稳定性</span></span><br><span class="line">        <span class="keyword">for</span>(; j &gt;= <span class="number">0</span> &amp;&amp; array[j] &gt; key;j-=gap)&#123;</span><br><span class="line">            array[j+gap] = array[j];</span><br><span class="line">        &#125;</span><br><span class="line">        array[j+gap] = key;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//希尔排序</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">shellSort</span><span class="params">(<span class="keyword">int</span>[] array)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> gap = array.length;</span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">        gap= (gap / <span class="number">3</span>) + <span class="number">1</span>;<span class="comment">//这里也可以写gap = gap / 2;  这是很多人总结出来分的间隔最适合的(也就是跳跃的步骤)</span></span><br><span class="line">        insertSortWithGap(array,gap);</span><br><span class="line">        <span class="comment">//如果gap==1说明排序方法以及按照一个个的比较排序过了，则说明数组已经处于有序了</span></span><br><span class="line">        <span class="comment">//所以直接跳出即可</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="number">1</span> == gap)&#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>总结：<br>1.希尔排序是不稳定的，因为分组的时候，两个一样的数可能没有被分到一起，一个跳到另一个后面也是可能的！<br>2.gap的取值可以自己定义；但推荐两种：<br>（1）gap = gap / 2;<br>（2）gap = gap / 3 + 1;</p>
+<p>注：如有运行错误，请评论一下我尽快更改，谢谢啦！</p>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+  
+  <div class="categories">
+    <a href="/categories/排序/">排序</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/算法/">算法</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yy.note">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/排序/">排序</a><small>5</small></li>
+  
+    <li><a href="/categories/数据结构/">数据结构</a><small>4</small></li>
+  
+    <li><a href="/categories/测试/">测试</a><small>1</small></li>
+  
+    <li><a href="/categories/牛客网练习/">牛客网练习</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/排序/选择排序/">选择排序</a>
+      </li>
+    
+      <li>
+        <a href="/排序/希尔排序/">希尔排序</a>
+      </li>
+    
+      <li>
+        <a href="/排序/直接插入排序/">直接插入排序</a>
+      </li>
+    
+      <li>
+        <a href="/排序/堆排序/">堆排序</a>
+      </li>
+    
+      <li>
+        <a href="/排序/快速排序/">快速排序</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/代码实现/">代码实现</a><small>4</small></li>
+  
+    <li><a href="/tags/心情/">心情</a><small>1</small></li>
+  
+    <li><a href="/tags/算法/">算法</a><small>12</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" style="font-size: 15px;">代码实现</a> <a href="/tags/%E5%BF%83%E6%83%85/" style="font-size: 10px;">心情</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a>
+  </div>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  <p>
+  
+  &copy; 2020 Yang
+  
+  All rights reserved.</p>
+  <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</div>
+<div class="clearfix"></div>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id='bg'></div>
+</body>
+</html>

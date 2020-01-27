@@ -1,0 +1,225 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  
+  <title>快速排序 | 笔记归宿</title>
+  <meta name="author" content="Yang" />
+
+  
+  <meta name="description" content="好想好想好想好想好想好想和你在一起工作！" />
+  
+
+  
+  <meta name="keywords" content="个人博客" />
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <meta property="og:title" content="快速排序" />
+  <meta property="og:site_name" content="笔记归宿" />
+
+  
+  
+
+  
+    <meta property="og:image" content="" />
+  
+
+  
+  <link href="/css/images/favicon.ico" rel="icon" />
+  
+
+  <link rel="alternate" href="/atom.xml" title="笔记归宿" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">笔记归宿</a></h1>
+  <h2><a href="/">愿你熬得过万丈孤独，藏得下星辰大海　</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2020-01-27T16:39:02.000Z"><a href="/排序/快速排序/">2020-01-28</a></time>
+      
+      
+  
+    <h1 class="title">快速排序</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>时间：2019年04月16日（周二）下午15:47<br>今天，突然想写一下快速排序，以前做过排序的比较，但是忘记的差不多了。这次回忆一下，下面是我在百度百科找到的关于快速排序的定义：</p>
+<p>快速排序（Quicksort）是对冒泡排序的一种改进。<br>快速排序由C. A. R. Hoare在1962年提出。它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。</p>
+<p>看完这段话，思路很清晰，一句话就是把要排序的数据变成俩部分嘛，左边都比右边小，当然我觉得还是说成三部分比较好！因为要有一个中间变量判断，小于这个中间变量的在左边，大于的在右边，就这么简单！</p>
+<p>思路：<br>那又有人问了，左边小右边大，那顺序还不一定排好，比如：<br>3  ，  2    ，1  ，  7   ，9 ，  8<br>数字7的左边都小于7，右边都大于7，顺序没有排好。所以接下来我们就要用到递归了，一次排序后，你再对3到7排一次序，一直到全部排好。左边排好后在对右边进行一样的操作就好了。</p>
+<p>详细步骤：(数组a[N],这里N为6，存放的数字就是上面那六个数字)<br>1）设置两个变量i、j，排序开始的时候：i=0，j=N-1；<br>2）以第一个数组元素作为中间变量，赋值给key，即key=a[0]；<br>3）从j开始向前搜索，即由后开始向前搜索(j–)，找到第一个小于key的值a[j]，将a[j]和a[i]的值交换；<br>4）从i开始向后搜索，即由前开始向后搜索(i++)，找到第一个大于key的a[i]，将a[i]和a[j]的值交换；<br>5）重复第3、4步，直到i=j;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Quick</span><span class="params">(<span class="keyword">int</span>[] a,<span class="keyword">int</span> low,<span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = low;</span><br><span class="line">	<span class="keyword">int</span> j = high;</span><br><span class="line">	<span class="keyword">int</span> key = a[low];</span><br><span class="line">	<span class="keyword">while</span>(i&lt;j) &#123;<span class="comment">//一趟快排，当i,j不等时，一直找下去，最后就达到key左边小于key,key右边大于key</span></span><br><span class="line">		<span class="keyword">while</span>(i&lt;j&amp;&amp;a[j]&gt;key) </span><br><span class="line">			j--;</span><br><span class="line">		<span class="keyword">if</span>(i&lt;j) &#123;</span><br><span class="line">			a[i] = a[j];</span><br><span class="line">			i++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span>(i&lt;j&amp;&amp;a[i]&lt;key)</span><br><span class="line">			i++;</span><br><span class="line">		<span class="keyword">if</span>(i&lt;j) &#123;</span><br><span class="line">			a[j] = a[i];</span><br><span class="line">			j--;</span><br><span class="line">		&#125;</span><br><span class="line">		a[i] = key;<span class="comment">//最后将关键词赋值给坑</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(low &lt; i-<span class="number">1</span>)</span><br><span class="line">		Quick(a,low,i-<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">if</span>(high &gt; i+<span class="number">1</span>)</span><br><span class="line">		Quick(a,i+<span class="number">1</span>,high);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里面最外层的while循环就是实现一次快排，找啊找啊找，一直到i==j<br>这里有一个不容易理解的地方：<br>就是交换值的时候，直接将一个值赋给另一个值了，完全覆盖了，给人感觉就会造成数据丢失，不过不要担心。我们来走一遍！</p>
+<p><img src="https://img-blog.csdnimg.cn/201904161637106.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNDE5NDYy,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>所以完全不必担心数据的丢失！<br>下面我将我的测试代码献上，一起学习，如果有错的地方请提出：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> zy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Quicksort</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Quick</span><span class="params">(<span class="keyword">int</span>[] a,<span class="keyword">int</span> low,<span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = low;</span><br><span class="line">	<span class="keyword">int</span> j = high;</span><br><span class="line">	<span class="keyword">int</span> key = a[low];</span><br><span class="line">	<span class="keyword">while</span>(i&lt;j) &#123;<span class="comment">//一趟快排，当i,j不等时，一直找下去，最后就达到key左边小于key,key右边大于key</span></span><br><span class="line">		<span class="keyword">while</span>(i&lt;j&amp;&amp;a[j]&gt;key) </span><br><span class="line">			j--;</span><br><span class="line">		<span class="keyword">if</span>(i&lt;j) &#123;</span><br><span class="line">			a[i] = a[j];</span><br><span class="line">			i++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span>(i&lt;j&amp;&amp;a[i]&lt;key)</span><br><span class="line">			i++;</span><br><span class="line">		<span class="keyword">if</span>(i&lt;j) &#123;</span><br><span class="line">			a[j] = a[i];</span><br><span class="line">			j--;</span><br><span class="line">		&#125;</span><br><span class="line">		a[i] = key;<span class="comment">//最后将关键词赋值给坑</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(low &lt; i-<span class="number">1</span>)</span><br><span class="line">		Quick(a,low,i-<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">if</span>(high &gt; i+<span class="number">1</span>)</span><br><span class="line">		Quick(a,i+<span class="number">1</span>,high);</span><br><span class="line">&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO 自动生成的方法存根</span></span><br><span class="line">        <span class="keyword">int</span>[] a = &#123;<span class="number">25</span>,<span class="number">24</span>,<span class="number">12</span>,<span class="number">76</span>,<span class="number">101</span>,<span class="number">96</span>,<span class="number">28</span>&#125;;</span><br><span class="line">        Quick(a,<span class="number">0</span>,a.length-<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i:a)</span><br><span class="line">        	System.out.print(i+<span class="string">" "</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+  
+  <div class="categories">
+    <a href="/categories/排序/">排序</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/算法/">算法</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yy.note">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/排序/">排序</a><small>5</small></li>
+  
+    <li><a href="/categories/数据结构/">数据结构</a><small>4</small></li>
+  
+    <li><a href="/categories/测试/">测试</a><small>1</small></li>
+  
+    <li><a href="/categories/牛客网练习/">牛客网练习</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/排序/选择排序/">选择排序</a>
+      </li>
+    
+      <li>
+        <a href="/排序/希尔排序/">希尔排序</a>
+      </li>
+    
+      <li>
+        <a href="/排序/直接插入排序/">直接插入排序</a>
+      </li>
+    
+      <li>
+        <a href="/排序/堆排序/">堆排序</a>
+      </li>
+    
+      <li>
+        <a href="/排序/快速排序/">快速排序</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/代码实现/">代码实现</a><small>4</small></li>
+  
+    <li><a href="/tags/心情/">心情</a><small>1</small></li>
+  
+    <li><a href="/tags/算法/">算法</a><small>12</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" style="font-size: 15px;">代码实现</a> <a href="/tags/%E5%BF%83%E6%83%85/" style="font-size: 10px;">心情</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a>
+  </div>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  <p>
+  
+  &copy; 2020 Yang
+  
+  All rights reserved.</p>
+  <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</div>
+<div class="clearfix"></div>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id='bg'></div>
+</body>
+</html>

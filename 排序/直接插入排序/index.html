@@ -1,0 +1,237 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  
+  <title>直接插入排序 | 笔记归宿</title>
+  <meta name="author" content="Yang" />
+
+  
+  <meta name="description" content="好想好想好想好想好想好想和你在一起工作！" />
+  
+
+  
+  <meta name="keywords" content="个人博客" />
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <meta property="og:title" content="直接插入排序" />
+  <meta property="og:site_name" content="笔记归宿" />
+
+  
+  
+
+  
+    <meta property="og:image" content="" />
+  
+
+  
+  <link href="/css/images/favicon.ico" rel="icon" />
+  
+
+  <link rel="alternate" href="/atom.xml" title="笔记归宿" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">笔记归宿</a></h1>
+  <h2><a href="/">愿你熬得过万丈孤独，藏得下星辰大海　</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2020-01-27T16:39:19.000Z"><a href="/排序/直接插入排序/">2020-01-28</a></time>
+      
+      
+  
+    <h1 class="title">直接插入排序</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
+<li><p>1.1 排序</p>
+</li>
+<li><p>排序，就是使一串记录，按照其中的某个或某些关键字的大小，递增或递减的排列起来的操作。<br>平时的上下文中，如果提到排序，通常指的是排升序（非降序）。<br>通常意义上的排序，都是指的原地排序(in place sort)。*</p>
+</li>
+<li><p>1.2 稳定性</p>
+</li>
+<li><p>两个相等的数据，如果经过排序后，排序算法能保证其相对位置不发生变化，则我们称该算法是具备稳定性的排序<br>算法。*</p>
+<p> <em>9  ,  5  ,  2  ,  7  ,  12  ,  2  ,  4  ,  6  ,  9  ,  23<br> 排序后<br> 前面的 2 依旧在后面的 2 的后面那么称这个算法具有稳定性</em></p>
+</li>
+</ul>
+<h2 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h2><p>整个区间被分为</p>
+<ol>
+<li><p>有序区间</p>
+</li>
+<li><p>无序区间<br>每次选择无序区间的第一个元素，在有序区间内选择合适的位置插入，随着数组的遍历完成以及元素的插入，数组就有序起来</p>
+<p>9  ,  5  ,  2  ,  7  ,  12  ,  2  ,  4  ,  6  ,  9  ,  23</p>
+</li>
+</ol>
+<p>（1）利用key记住5<br>（2）从5开始，我们默认第一个元素有序，拿5和9比较，比9小，<br>9向后移动<br>（3）5继续比较发现没有元素，那么将5插入成第一个元素<br>（4）数组变为了 5，9， 2  ,  7  ,  12  ,  2  ,  4  ,  6  ,  9  ,  23<br>（5）现在认为有序区间有两个元素，所以在无序区间继续选择<br>（6）利用key记住2<br>（7）我们拿2和9比较，比9小，9向后移动<br>（8）数组变为了5，9，9，7，12，2，4，6，9，23<br>（9）在拿2和5比较，比5小，5向后移动<br>（10）数组变为了 5，5，9，7，12，2，4，6，9，23<br>（11）2没有要比的元素，将其插入<br>（12）数组变为了2，5，9，7，12，2，4，6，9，23<br>.。。。<br>继续下去数组最后就会有序</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//插入排序</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertSort</span><span class="params">(<span class="keyword">int</span>[] array)</span></span>&#123;</span><br><span class="line">    <span class="comment">//从1开始是因为我们默认第一个元素是有序的</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; array.length;i++)&#123;</span><br><span class="line">        <span class="comment">//这里用变量记住这个要进行插入的数据</span></span><br><span class="line">        <span class="keyword">int</span> key = array[i];</span><br><span class="line">        <span class="comment">//j表示有序区间的最后一个下标（从后往前比较）</span></span><br><span class="line">        <span class="keyword">int</span> j = i - <span class="number">1</span>;</span><br><span class="line">        <span class="comment">//如果有序区间的元素大那么有序区间向后移动，让key进行插入。（这就是为什么要用key记住插入的数据</span></span><br><span class="line">        <span class="comment">// 防止被移动的有序元素覆盖掉，大于号是为了保证稳定性）</span></span><br><span class="line">        <span class="keyword">for</span>(; j &gt;= <span class="number">0</span> &amp;&amp; array[j] &gt; key;j--)&#123;</span><br><span class="line">            array[j+<span class="number">1</span>] = array[j];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//j+1才是真正要插入的地方</span></span><br><span class="line">        array[j+<span class="number">1</span>] = key;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>总结：<br>直接插入排序是一种稳定的算法，因为它是按照原本数组的顺序一步步向后遍历的，插入的时候移动条件是大于才移动。<br>所以等于的时候数组没有进行改变，这就保证了数组的稳定性！<br>注：如有运行错误，请评论一下我尽快更改，谢谢啦！</p>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+  
+  <div class="categories">
+    <a href="/categories/排序/">排序</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/算法/">算法</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yy.note">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/排序/">排序</a><small>5</small></li>
+  
+    <li><a href="/categories/数据结构/">数据结构</a><small>4</small></li>
+  
+    <li><a href="/categories/测试/">测试</a><small>1</small></li>
+  
+    <li><a href="/categories/牛客网练习/">牛客网练习</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/排序/选择排序/">选择排序</a>
+      </li>
+    
+      <li>
+        <a href="/排序/希尔排序/">希尔排序</a>
+      </li>
+    
+      <li>
+        <a href="/排序/直接插入排序/">直接插入排序</a>
+      </li>
+    
+      <li>
+        <a href="/排序/堆排序/">堆排序</a>
+      </li>
+    
+      <li>
+        <a href="/排序/快速排序/">快速排序</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/代码实现/">代码实现</a><small>4</small></li>
+  
+    <li><a href="/tags/心情/">心情</a><small>1</small></li>
+  
+    <li><a href="/tags/算法/">算法</a><small>12</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" style="font-size: 15px;">代码实现</a> <a href="/tags/%E5%BF%83%E6%83%85/" style="font-size: 10px;">心情</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a>
+  </div>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  <p>
+  
+  &copy; 2020 Yang
+  
+  All rights reserved.</p>
+  <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</div>
+<div class="clearfix"></div>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id='bg'></div>
+</body>
+</html>
