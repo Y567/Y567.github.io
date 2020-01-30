@@ -203,7 +203,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yy.note/%E6%8E%92%E5%BA%8F/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/">
+    <link itemprop="mainEntityOfPage" href="https://yy.note/python/K-NN%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%EF%BC%88%E9%B8%A2%E5%B0%BE%E8%8A%B1%E6%95%B0%E6%8D%AE%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.gif">
@@ -217,7 +217,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/%E6%8E%92%E5%BA%8F/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/" class="post-title-link" itemprop="url">选择排序</a>
+            <a href="/python/K-NN%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%EF%BC%88%E9%B8%A2%E5%B0%BE%E8%8A%B1%E6%95%B0%E6%8D%AE%EF%BC%89/" class="post-title-link" itemprop="url">K-NN算法实现（鸢尾花数据）</a>
         </h1>
 
         <div class="post-meta">
@@ -228,7 +228,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-01-28 00:39:50 / 修改时间：00:59:53" itemprop="dateCreated datePublished" datetime="2020-01-28T00:39:50+08:00">2020-01-28</time>
+              <time title="创建时间：2020-01-30 20:27:53 / 修改时间：20:28:25" itemprop="dateCreated datePublished" datetime="2020-01-30T20:27:53+08:00">2020-01-30</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -236,8 +236,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8E%92%E5%BA%8F/" itemprop="url" rel="index">
-                    <span itemprop="name">排序</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
             </span>
@@ -251,8 +251,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/%E6%8E%92%E5%BA%8F/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%8E%92%E5%BA%8F/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/" itemprop="commentCount"></span>
+    <a title="valine" href="/python/K-NN%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%EF%BC%88%E9%B8%A2%E5%B0%BE%E8%8A%B1%E6%95%B0%E6%8D%AE%EF%BC%89/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/python/K-NN%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%EF%BC%88%E9%B8%A2%E5%B0%BE%E8%8A%B1%E6%95%B0%E6%8D%AE%EF%BC%89/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -262,14 +262,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.5k</span>
+              <span>3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -281,30 +281,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
-<li><p>1.1 排序</p>
-</li>
-<li><p>排序，就是使一串记录，按照其中的某个或某些关键字的大小，递增或递减的排列起来的操作。<br>平时的上下文中，如果提到排序，通常指的是排升序（非降序）。<br>通常意义上的排序，都是指的原地排序(in place sort)。*</p>
-</li>
-<li><p>1.2 稳定性</p>
-</li>
-<li><p>两个相等的数据，如果经过排序后，排序算法能保证其相对位置不发生变化，则我们称该算法是具备稳定性的排序<br>算法。*</p>
-<p> <em>9  ,  5  ,  2  ,  7  ,  12  ,  2  ,  4  ,  6  ,  9  ,  23<br> 排序后<br> 前面的 2 依旧在后面的 2 的后面那么称这个算法具有稳定性</em></p>
-</li>
-</ul>
-<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p>选择排序实际上就是在遍历的同时选择出最小的元素放在前面，第一次选出最小的放在第一位，第二次选择出次小的放在第二位。。。后面按照相同的步骤就可以使数组有序。</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">   <span class="comment">//直接选择排序</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">selectSort</span><span class="params">(<span class="keyword">int</span>[] array)</span></span>&#123;</span><br><span class="line">    <span class="comment">//这里写成i &lt; array.length - 1;因为当你排完前面的序，最后一个就默认有序了，所以遍历到倒数第二个就结束了</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length-<span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> minIndex = i;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i+<span class="number">1</span>;j &lt; array.length - <span class="number">1</span>;j++)&#123;</span><br><span class="line">            <span class="comment">//小于号保证了稳定性</span></span><br><span class="line">            <span class="keyword">if</span>(array[j] &lt; array[minIndex])&#123;</span><br><span class="line">                minIndex = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        swap(array,i,minIndex);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] array, <span class="keyword">int</span> i, <span class="keyword">int</span> minIndex)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t = array[minIndex];</span><br><span class="line">    array[minIndex] = array[i];</span><br><span class="line">    array[i] = t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>总结：<br>选择排序是稳定的，在比较条件不写等于号就可以避免破坏数据的相对位置！</p>
-<p>优化：在遍历的同时记录最大最小值，将最小值放在前面，最大值放在最后，这样效率就会提升，遍历的次数就少了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">selectSort2</span><span class="params">(<span class="keyword">int</span>[] array)</span></span>&#123;</span><br><span class="line">     <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">     <span class="keyword">int</span> right = array.length - <span class="number">1</span>;</span><br><span class="line">     <span class="keyword">while</span>(left &lt;= right)&#123;</span><br><span class="line">         <span class="keyword">int</span> minIndex = left;</span><br><span class="line">         <span class="keyword">int</span> maxIndex = left;</span><br><span class="line">         <span class="keyword">for</span>(<span class="keyword">int</span> i = left + <span class="number">1</span>;i &lt;= right;i++)&#123;</span><br><span class="line">             <span class="keyword">if</span>(array[i] &lt; array[minIndex])&#123;</span><br><span class="line">                 minIndex = i;</span><br><span class="line">             &#125;</span><br><span class="line">             <span class="keyword">if</span>(array[i] &gt; array[maxIndex])&#123;</span><br><span class="line">                 maxIndex = i;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">         swap(array,left,minIndex);</span><br><span class="line">         <span class="keyword">if</span>(maxIndex == left)&#123;</span><br><span class="line">             maxIndex = minIndex;</span><br><span class="line">         &#125;</span><br><span class="line">         swap(array,right,maxIndex);</span><br><span class="line">         left++;</span><br><span class="line">         right--;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>需要注意的地方：</strong><br>            if(maxIndex == left){<br>                maxIndex = minIndex;<br>            }<br>这里是为了防止最大的元素在最左边被交换掉位置！比如：</p>
-<p><strong>9     5      1      7       3        2<br>left = 0;      right = 5;<br>maxIndex = 0; minIndex = 2;<br>如果不加这个条件，当将最小的交换到最左边后，其实maxIndex已经不为0了。而变成了2，所以只要将maxIndex = minIndex;就可以了</strong></p>
-<p>注：如有运行错误，请评论一下我尽快更改，谢谢啦！</p>
-
+          <h1 id="运行环境-Jupyter"><a href="#运行环境-Jupyter" class="headerlink" title="运行环境:Jupyter"></a>运行环境:Jupyter</h1><h1 id="一、K-近邻算法"><a href="#一、K-近邻算法" class="headerlink" title="一、K-近邻算法"></a>一、K-近邻算法</h1><p>K-近邻（K-NN）算法可以说是最简单的机器算法。构建模型只需要保存训练数据集即可。想要对新数据点做出预测，算法会在训练数据集中找到最近的数据点，也就是它的“最近邻”。</p>
+<p> 这里实现的是一个监督学习中的分类（二分类）问题。我们需要预测出测试数据的所属类别。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/python/K-NN%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%EF%BC%88%E9%B8%A2%E5%B0%BE%E8%8A%B1%E6%95%B0%E6%8D%AE%EF%BC%89/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -323,7 +309,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yy.note/%E6%8E%92%E5%BA%8F/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F/">
+    <link itemprop="mainEntityOfPage" href="https://yy.note/C/%E6%B1%82%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%E4%B8%8D%E5%90%8C%E7%AE%97%E6%B3%95%E6%AF%94%E8%BE%83/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.gif">
@@ -337,7 +323,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/%E6%8E%92%E5%BA%8F/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F/" class="post-title-link" itemprop="url">希尔排序</a>
+            <a href="/C/%E6%B1%82%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%E4%B8%8D%E5%90%8C%E7%AE%97%E6%B3%95%E6%AF%94%E8%BE%83/" class="post-title-link" itemprop="url">求最大公约数不同算法比较</a>
         </h1>
 
         <div class="post-meta">
@@ -348,7 +334,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-01-28 00:39:40 / 修改时间：01:00:13" itemprop="dateCreated datePublished" datetime="2020-01-28T00:39:40+08:00">2020-01-28</time>
+              <time title="创建时间：2020-01-30 20:24:59 / 修改时间：20:25:54" itemprop="dateCreated datePublished" datetime="2020-01-30T20:24:59+08:00">2020-01-30</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -356,8 +342,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8E%92%E5%BA%8F/" itemprop="url" rel="index">
-                    <span itemprop="name">排序</span>
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
                   </a>
                 </span>
             </span>
@@ -371,8 +357,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/%E6%8E%92%E5%BA%8F/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%8E%92%E5%BA%8F/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F/" itemprop="commentCount"></span>
+    <a title="valine" href="/C/%E6%B1%82%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%E4%B8%8D%E5%90%8C%E7%AE%97%E6%B3%95%E6%AF%94%E8%BE%83/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/C/%E6%B1%82%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%E4%B8%8D%E5%90%8C%E7%AE%97%E6%B3%95%E6%AF%94%E8%BE%83/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -382,14 +368,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.2k</span>
+              <span>9.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>9 分钟</span>
             </span>
 
         </div>
@@ -401,25 +387,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
-<li><p>1.1 排序</p>
-</li>
-<li><p>排序，就是使一串记录，按照其中的某个或某些关键字的大小，递增或递减的排列起来的操作。<br>平时的上下文中，如果提到排序，通常指的是排升序（非降序）。<br>通常意义上的排序，都是指的原地排序(in place sort)。*</p>
-</li>
-<li><p>1.2 稳定性</p>
-</li>
-<li><p>两个相等的数据，如果经过排序后，排序算法能保证其相对位置不发生变化，则我们称该算法是具备稳定性的排序<br>算法。*</p>
-<p> <em>9  ,  5  ,  2  ,  7  ,  12  ,  2  ,  4  ,  6  ,  9  ,  23<br> 排序后<br> 前面的 2 依旧在后面的 2 的后面那么称这个算法具有稳定性</em></p>
-</li>
-</ul>
-<h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><p><a href="https://blog.csdn.net/qq_42419462/article/details/101382639" target="_blank" rel="noopener">想要了解希尔排序需要先了解直接插入排序（希尔排序是直接插入排序的优化）</a></p>
-<p>  9  ,  5  ,  2  ,  7  ,  12  ,  2  ,  4  ,  6  ,  9  ,  23</p>
-<p>基本思想是一样。<br>希尔排序你可以将其理解为分组进行插入排序。（跳着排序）<br>先将数组变为一个近似有序的数组。然后逐渐逼近。<br>这里利用一个变量（gap）实现分组。<br>gap代表间隙，一次移动的步数，因为移动的步数是跳着走的所以比起直接插入排序的一步一步走快！！！<br>继续下去数组最后就会有序</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//分组交换的插入排序(gap表示间隙)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertSortWithGap</span><span class="params">(<span class="keyword">int</span>[] array,<span class="keyword">int</span> gap)</span></span>&#123;</span><br><span class="line">    <span class="comment">//这里交换的思想与直接插入排序一样，只是跳着比较，不是一个个比较，排完后，数组近似有序</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; array.length;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> key = array[i];</span><br><span class="line">        <span class="keyword">int</span> j = i - gap;</span><br><span class="line">        <span class="comment">//同样的这里写大于是为了保证稳定性</span></span><br><span class="line">        <span class="keyword">for</span>(; j &gt;= <span class="number">0</span> &amp;&amp; array[j] &gt; key;j-=gap)&#123;</span><br><span class="line">            array[j+gap] = array[j];</span><br><span class="line">        &#125;</span><br><span class="line">        array[j+gap] = key;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//希尔排序</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">shellSort</span><span class="params">(<span class="keyword">int</span>[] array)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> gap = array.length;</span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">        gap= (gap / <span class="number">3</span>) + <span class="number">1</span>;<span class="comment">//这里也可以写gap = gap / 2;  这是很多人总结出来分的间隔最适合的(也就是跳跃的步骤)</span></span><br><span class="line">        insertSortWithGap(array,gap);</span><br><span class="line">        <span class="comment">//如果gap==1说明排序方法以及按照一个个的比较排序过了，则说明数组已经处于有序了</span></span><br><span class="line">        <span class="comment">//所以直接跳出即可</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="number">1</span> == gap)&#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>总结：<br>1.希尔排序是不稳定的，因为分组的时候，两个一样的数可能没有被分到一起，一个跳到另一个后面也是可能的！<br>2.gap的取值可以自己定义；但推荐两种：<br>（1）gap = gap / 2;<br>（2）gap = gap / 3 + 1;</p>
-<p>注：如有运行错误，请评论一下我尽快更改，谢谢啦！</p>
-
+          <p><strong>后附完整源代码：（含有求最大公倍数的函数，此代码测试的是面对不同组数据，各种算法的性能分析，如需输出最大公约数，只需加个输出就好！）</strong></p>
+<h2 id="一、-题目分析"><a href="#一、-题目分析" class="headerlink" title="一、 题目分析"></a>一、 题目分析</h2><p>首先，题目要求我们求出俩个正整数的最大公约数和最小公倍数，并提供了6种不同的算法（递归与非递归算俩种）<br><strong>1.    辗转相除法</strong>：此种方法核心如其名，辗转，大数放a中，小数放b中。大的除以小的，余数为零，则小数为最大公约数，不为零则，将余数与b比较大的放a,小的放b,如此往复！<br><strong>2.    穷举法</strong>：看到这个穷举就知道它是最吃力不讨好的算法了。一个个穷举不仅浪费CPU,还浪费时间对吧，对两个正整数a,b如果能在区间[a,0]或[b,0]内能找到一个整数temp能同时被a和b所整除，则temp即为最大公约数。<br><strong>3.    更相减损术</strong>：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/C/%E6%B1%82%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%E4%B8%8D%E5%90%8C%E7%AE%97%E6%B3%95%E6%AF%94%E8%BE%83/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -438,7 +415,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yy.note/%E6%8E%92%E5%BA%8F/%E7%9B%B4%E6%8E%A5%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">
+    <link itemprop="mainEntityOfPage" href="https://yy.note/C%E8%AF%AD%E8%A8%80/%E5%8D%95%E8%AF%8D%E5%B0%8F%E5%8A%A9%E6%89%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.gif">
@@ -452,7 +429,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/%E6%8E%92%E5%BA%8F/%E7%9B%B4%E6%8E%A5%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" class="post-title-link" itemprop="url">直接插入排序</a>
+            <a href="/C%E8%AF%AD%E8%A8%80/%E5%8D%95%E8%AF%8D%E5%B0%8F%E5%8A%A9%E6%89%8B/" class="post-title-link" itemprop="url">单词小助手</a>
         </h1>
 
         <div class="post-meta">
@@ -463,7 +440,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-01-28 00:39:19 / 修改时间：00:59:16" itemprop="dateCreated datePublished" datetime="2020-01-28T00:39:19+08:00">2020-01-28</time>
+              <time title="创建时间：2020-01-30 20:22:43 / 修改时间：20:23:56" itemprop="dateCreated datePublished" datetime="2020-01-30T20:22:43+08:00">2020-01-30</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -471,8 +448,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8E%92%E5%BA%8F/" itemprop="url" rel="index">
-                    <span itemprop="name">排序</span>
+                  <a href="/categories/C%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index">
+                    <span itemprop="name">C语言</span>
                   </a>
                 </span>
             </span>
@@ -486,8 +463,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/%E6%8E%92%E5%BA%8F/%E7%9B%B4%E6%8E%A5%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%8E%92%E5%BA%8F/%E7%9B%B4%E6%8E%A5%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" itemprop="commentCount"></span>
+    <a title="valine" href="/C%E8%AF%AD%E8%A8%80/%E5%8D%95%E8%AF%8D%E5%B0%8F%E5%8A%A9%E6%89%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/C%E8%AF%AD%E8%A8%80/%E5%8D%95%E8%AF%8D%E5%B0%8F%E5%8A%A9%E6%89%8B/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -497,14 +474,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
+              <span>10k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>9 分钟</span>
             </span>
 
         </div>
@@ -516,30 +493,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
-<li><p>1.1 排序</p>
-</li>
-<li><p>排序，就是使一串记录，按照其中的某个或某些关键字的大小，递增或递减的排列起来的操作。<br>平时的上下文中，如果提到排序，通常指的是排升序（非降序）。<br>通常意义上的排序，都是指的原地排序(in place sort)。*</p>
-</li>
-<li><p>1.2 稳定性</p>
-</li>
-<li><p>两个相等的数据，如果经过排序后，排序算法能保证其相对位置不发生变化，则我们称该算法是具备稳定性的排序<br>算法。*</p>
-<p> <em>9  ,  5  ,  2  ,  7  ,  12  ,  2  ,  4  ,  6  ,  9  ,  23<br> 排序后<br> 前面的 2 依旧在后面的 2 的后面那么称这个算法具有稳定性</em></p>
-</li>
-</ul>
-<h2 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h2><p>整个区间被分为</p>
-<ol>
-<li><p>有序区间</p>
-</li>
-<li><p>无序区间<br>每次选择无序区间的第一个元素，在有序区间内选择合适的位置插入，随着数组的遍历完成以及元素的插入，数组就有序起来</p>
-<p>9  ,  5  ,  2  ,  7  ,  12  ,  2  ,  4  ,  6  ,  9  ,  23</p>
-</li>
-</ol>
-<p>（1）利用key记住5<br>（2）从5开始，我们默认第一个元素有序，拿5和9比较，比9小，<br>9向后移动<br>（3）5继续比较发现没有元素，那么将5插入成第一个元素<br>（4）数组变为了 5，9， 2  ,  7  ,  12  ,  2  ,  4  ,  6  ,  9  ,  23<br>（5）现在认为有序区间有两个元素，所以在无序区间继续选择<br>（6）利用key记住2<br>（7）我们拿2和9比较，比9小，9向后移动<br>（8）数组变为了5，9，9，7，12，2，4，6，9，23<br>（9）在拿2和5比较，比5小，5向后移动<br>（10）数组变为了 5，5，9，7，12，2，4，6，9，23<br>（11）2没有要比的元素，将其插入<br>（12）数组变为了2，5，9，7，12，2，4，6，9，23<br>.。。。<br>继续下去数组最后就会有序</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//插入排序</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertSort</span><span class="params">(<span class="keyword">int</span>[] array)</span></span>&#123;</span><br><span class="line">    <span class="comment">//从1开始是因为我们默认第一个元素是有序的</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; array.length;i++)&#123;</span><br><span class="line">        <span class="comment">//这里用变量记住这个要进行插入的数据</span></span><br><span class="line">        <span class="keyword">int</span> key = array[i];</span><br><span class="line">        <span class="comment">//j表示有序区间的最后一个下标（从后往前比较）</span></span><br><span class="line">        <span class="keyword">int</span> j = i - <span class="number">1</span>;</span><br><span class="line">        <span class="comment">//如果有序区间的元素大那么有序区间向后移动，让key进行插入。（这就是为什么要用key记住插入的数据</span></span><br><span class="line">        <span class="comment">// 防止被移动的有序元素覆盖掉，大于号是为了保证稳定性）</span></span><br><span class="line">        <span class="keyword">for</span>(; j &gt;= <span class="number">0</span> &amp;&amp; array[j] &gt; key;j--)&#123;</span><br><span class="line">            array[j+<span class="number">1</span>] = array[j];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//j+1才是真正要插入的地方</span></span><br><span class="line">        array[j+<span class="number">1</span>] = key;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>总结：<br>直接插入排序是一种稳定的算法，因为它是按照原本数组的顺序一步步向后遍历的，插入的时候移动条件是大于才移动。<br>所以等于的时候数组没有进行改变，这就保证了数组的稳定性！<br>注：如有运行错误，请评论一下我尽快更改，谢谢啦！</p>
-
+          <p>/<strong><strong><strong><strong><strong><strong>***</strong></strong></strong></strong></strong></strong>/<br>名称：单词小助手（稍微改善版）<br>编程语言：C<br>编译器：DEV C++<br>完成日期：2019年04月03日</p>
+<p><strong>PS:此程序不是本人制作，我只是在源程序上进行添加功能和进行改善</strong></p>
+<p>添加功能如下：<br>（1）排行榜功能<br>（2）数据验证<br>（3）错词重记忆<br>单词小助手：<br>首先题目已经给出了基本的代码，也实现了基本的功能，比如说添加单词，修改，删除，查询，以及单词小测试等功能，我们需要做的就是改善其中的功能，更进一步添加新的功能，比如说改善其中的数据验证，添加排行功能，错词重复记忆！让单词小助手更激发用户的攀比！<br>增加了一点小小的颜色：界面换了个颜色之类的。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/C%E8%AF%AD%E8%A8%80/%E5%8D%95%E8%AF%8D%E5%B0%8F%E5%8A%A9%E6%89%8B/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -558,7 +522,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yy.note/%E6%8E%92%E5%BA%8F/%E5%A0%86%E6%8E%92%E5%BA%8F/">
+    <link itemprop="mainEntityOfPage" href="https://yy.note/C/%E4%B8%89%E5%A4%A9%E6%89%93%E9%B1%BC%E4%B8%A4%E5%A4%A9%E6%99%92%E7%BD%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.gif">
@@ -572,7 +536,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/%E6%8E%92%E5%BA%8F/%E5%A0%86%E6%8E%92%E5%BA%8F/" class="post-title-link" itemprop="url">堆排序</a>
+            <a href="/C/%E4%B8%89%E5%A4%A9%E6%89%93%E9%B1%BC%E4%B8%A4%E5%A4%A9%E6%99%92%E7%BD%91/" class="post-title-link" itemprop="url">三天打鱼两天晒网</a>
         </h1>
 
         <div class="post-meta">
@@ -583,7 +547,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-01-28 00:39:08 / 修改时间：01:00:19" itemprop="dateCreated datePublished" datetime="2020-01-28T00:39:08+08:00">2020-01-28</time>
+              <time title="创建时间：2020-01-30 20:18:12 / 修改时间：20:21:04" itemprop="dateCreated datePublished" datetime="2020-01-30T20:18:12+08:00">2020-01-30</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -591,8 +555,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8E%92%E5%BA%8F/" itemprop="url" rel="index">
-                    <span itemprop="name">排序</span>
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
                   </a>
                 </span>
             </span>
@@ -606,8 +570,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/%E6%8E%92%E5%BA%8F/%E5%A0%86%E6%8E%92%E5%BA%8F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/%E6%8E%92%E5%BA%8F/%E5%A0%86%E6%8E%92%E5%BA%8F/" itemprop="commentCount"></span>
+    <a title="valine" href="/C/%E4%B8%89%E5%A4%A9%E6%89%93%E9%B1%BC%E4%B8%A4%E5%A4%A9%E6%99%92%E7%BD%91/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/C/%E4%B8%89%E5%A4%A9%E6%89%93%E9%B1%BC%E4%B8%A4%E5%A4%A9%E6%99%92%E7%BD%91/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -617,14 +581,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.4k</span>
+              <span>8.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>8 分钟</span>
             </span>
 
         </div>
@@ -636,31 +600,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
-<li><p>1.1 排序</p>
-</li>
-<li><p>排序，就是使一串记录，按照其中的某个或某些关键字的大小，递增或递减的排列起来的操作。<br>平时的上下文中，如果提到排序，通常指的是排升序（非降序）。<br>通常意义上的排序，都是指的原地排序(in place sort)。*</p>
-</li>
-<li><p>1.2 稳定性</p>
-</li>
-<li><p>两个相等的数据，如果经过排序后，排序算法能保证其相对位置不发生变化，则我们称该算法是具备稳定性的排序<br>算法。*</p>
-<p> <em>9  ,  5  ,  2  ,  7  ,  12  ,  2  ,  4  ,  6  ,  9  ,  23<br> 排序后<br> 前面的 2 依旧在后面的 2 的后面那么称这个算法具有稳定性</em></p>
-</li>
-</ul>
-<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><p>其基本思想其实就是选择排序，只是寻求最大值的方式不同。选择排序是通过遍历求最大值（最小值），而堆排序是通过大堆的特性寻求最大值的，效率更高效一些。<br>大堆的实质其实就是数组。<br>堆首元素就是0号下标对应的元素。所以只需要交换0号下标的元素到末尾即可。</p>
-<p>注意的地方：交换完元素后，堆的特性可能就被破环了，所以当交换完成后一定要对改变后的堆进行调整（这里我才用的是向下调整）</p>
-<p>所以我们的第一步就是建堆(建堆需要用到堆的调整方法见下文)：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">creatBigHeap</span><span class="params">(<span class="keyword">int</span>[] array)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = (array.length-<span class="number">2</span>) / <span class="number">2</span>;i &gt;= <span class="number">0</span>;i--)&#123;</span><br><span class="line">        shiftDownBig(array,i,array.length);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>调整堆的方法（这是向下调整大堆）：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//向下调整大堆</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">shiftDownBig</span><span class="params">(<span class="keyword">int</span>[] array,<span class="keyword">int</span> i,<span class="keyword">int</span> size)</span></span>&#123;</span><br><span class="line">      <span class="keyword">while</span>(<span class="number">2</span> * i + <span class="number">1</span> &lt; size)&#123;</span><br><span class="line">          <span class="comment">//这里默认为左孩子最大</span></span><br><span class="line">          <span class="keyword">int</span> max = <span class="number">2</span> * i + <span class="number">1</span>;</span><br><span class="line">          <span class="keyword">if</span>(max + <span class="number">1</span> &lt; size &amp;&amp; array[max] &lt; array[max + <span class="number">1</span>])&#123;</span><br><span class="line">              max = max + <span class="number">1</span>;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">if</span>(array[i] &gt;= array[max])&#123;</span><br><span class="line">              <span class="keyword">return</span>;</span><br><span class="line">          &#125;</span><br><span class="line">          swap(array,i,max);</span><br><span class="line">          i = max;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>接下来就是进行交换元素实现堆排序了<br><strong>(注意这里读不懂可以将i代入0去读会更清晰)：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//堆排序</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">heapSort</span><span class="params">(<span class="keyword">int</span>[] array)</span></span>&#123;</span><br><span class="line">     <span class="comment">//建大堆</span></span><br><span class="line">     creatBigHeap(array);</span><br><span class="line">     <span class="comment">//将最大的元素放在数组后面（这里i控制的是循环次数不要多想，比如n个元素只需要9次调整就可有序；）</span></span><br><span class="line">     <span class="comment">//和选择排序有点类似</span></span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length - <span class="number">1</span>;i++)&#123;</span><br><span class="line">         <span class="comment">//因为大堆的首元素就是数组中的最大值，所以直接交换(永远和无序区间最后一个交换)</span></span><br><span class="line">         swap(array,<span class="number">0</span>,array.length-i-<span class="number">1</span>);</span><br><span class="line">         <span class="comment">//交换完毕后可能会破坏堆的完整性所以需要调整</span></span><br><span class="line">         shiftDownBig(array,<span class="number">0</span>,array.length-i-<span class="number">1</span>);</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>总结：<br>堆排序是不稳定的，在堆的调整过程中非常容易将元素的相对位置改变。<br><strong>注意：排升序建大堆，排降序建小堆（都是与最后的元素交换）<br>大堆将大的元素交换到最后最后形成的数组就是升序！<br>反之，小堆将小的元素交换到后面，最后形成的数组就是降序的！</strong></p>
-<p>注：如有运行错误，请评论一下我尽快更改，谢谢啦！</p>
-
+          <p>/<strong><strong><strong><strong><strong><strong><strong>**</strong></strong></strong></strong></strong></strong></strong>/<br>文件名称：三天打鱼两天晒网<br>编程语言：C++<br>编译器：Visual C++ 6.0<br>完成日期：2019年02月28日<br>作者：无奈¬_¬｀啊</p>
+<h1 id="一-问题"><a href="#一-问题" class="headerlink" title="一.问题"></a>一.问题</h1><p>中国有句俗语叫“三天打鱼两天晒网”。某人从2010年1月1日起开始“三天打鱼两天晒网”，问这个人在以后的某一天中是“打鱼”还是“晒网”。用C或C++语言/java/python实现程序解决问题。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/C/%E4%B8%89%E5%A4%A9%E6%89%93%E9%B1%BC%E4%B8%A4%E5%A4%A9%E6%99%92%E7%BD%91/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -679,7 +628,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -747,20 +696,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -816,12 +765,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">23k</span>
+    <span title="站点总字数">55k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21 分钟</span>
+    <span title="站点阅读时长">50 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
   </div>
